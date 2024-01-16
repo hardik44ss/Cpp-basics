@@ -1,0 +1,81 @@
+cpp =-> made by Bjare stroustrope 
+used as extension of C near HARDWARE 
+
+C++ = more control over system resourse , special :: GARBAGE COLLECTION 
+memory management, fast program ,games and game engines 
+high performance  , LOW level language 
+major update in = 2011,2014,2017 
+
+I = Integrated 
+D = Developement 
+E = Environment 
+
+#include <iostream> header file 
+io = input output 
+int main is used to call the function which 
+is present in the header file 
+"using namespace std" : means that we can use names for objects and variables from the standard library.
+
+variable used to store data 
+=C++ range from 1 to 255 
+=variable starts with alphabet and (_)--> case sensitive 
+=can't use C++ reserved keyword 
+
+cout used to print the data
+ Boolean => (True=1 or false=0) 
+ float = 4.445
+ double = for long decimal places
+
+ Local Variable = inside braces (It has precidence)
+ Global = declared outside can be used anywhere in function
+
+DATA TYPE :: 
+    <Builtin --> int, float , etc 
+    <User defined--> struct , Union , Enum 
+    <Derived --> Array, Function , Pointer 
+
+*C++ comes with library
+to input 
+    cin>> 
+to print
+    cout<<
+endl used for new line
+The newline character (\n) is called an escape sequence,
+To use global vatriable
+use << ::g<<endl>>;
+
+#include<iomanip>
+(manipulator)
+to use setw(number)--> to give spaces of particular number
+
+**operator precidence**
+a*b , a/b , a%b ==left to right
+a+b a-b == left to right
+****control structure*****
+Sequence = Entry->Action1->action2->exit 
+selection = condn{ True -> action1 || false -> action 2} -> exit
+Loop = entry -> loop -> condn{true -> loop }if false -> action -> exit
+for,while,dowhile
+//FOR loop
+    for(int i=0;i<=40;i++){
+        cout<<i<<endl;
+    }
+//WHILE loop
+    //syntex of while loop
+    while (/* condition */)
+    {
+        /* code */
+    }
+//DO WHILe
+    do
+    {
+        /* code */
+    } while (/* condition */);
+// first program run then check condition 
+ 
+POINTERs= datatype which holds another data type
+int* variable which holds address of a
+
+To get length 
+cout << varname.length(); // OR
+cout << varname.size();
