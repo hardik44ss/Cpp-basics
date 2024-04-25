@@ -1,65 +1,87 @@
-#include <iostream>
-#include <cstring>
+#include<iostream>
 using namespace std;
 
-bool isOperator(char c){
-    return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
-}
-
-int precedence(char op)
-{
-    switch (op){
-    case '+':
-    case '-':
-        return 1;
-    case '*':
-    case '/':
-        return 2;
-    case '^':
-        return 3;
-    default:
-        return 0;
+class Node{
+public:
+    int data;
+    Node* next;
+    Node(int d){
+        data = d;
+        next = NULL;
     }
-}
+};
 
-void infixToPostfix(const char *expression, char *postfix){
-    int len = strlen(expression);
-    int j = 0; // Index for postfix
-    char stack[len]; // Stack for operators
-    int top = -1; // Initialize stack top
-    for (int i = 0; i < len; i++){
-        char c = expression[i];
-        if (isalnum(c)){
-            postfix[j++] = c;
-        }else if (c == '('){
-            stack[++top] = c;
-        }else if (c == ')'){
-            while (top != -1 && stack[top] != '('){
-                postfix[j++] = stack[top--];
-            }
-        top--; // Remove '('
+class queue{
+public:
+    Node* front;
+    Node* end;
+    queue(){
+        front= NULL;
+        end= NULL;
+    }
+
+    void push(int x){
+        Node* n = new Node(x);
+        if(front == NULL ){
+            front = n ;
+            end = n;
+            return;
         }
-        else if (isOperator(c)){
-            while (top != -1 && precedence(c) <= precedence(stack[top])){
-                postfix[j++] = stack[top--];
-            }
-            stack[++top] = c;
+        end->next = n;
+        end=n;
+    }
+
+    void pop(){
+        if(front == NULL){
+            cout<< " Underflow "<<endl;
+            return ;
+        }
+        Node* todelete = front;
+        front = front->next;
+        delete todelete;
+        // If queue becomes empty after deletion, update end pointer as well
+        if(front == NULL){
+            end = NULL;
         }
     }
 
-    while (top != -1){
-        postfix[j++] = stack[top--];
+    int peek(){
+        if(front == NULL){
+            cout<< " Underflow "<<endl;
+            return -1 ;
+        }
+        return  front->data;
     }
-    postfix[j] = '\0'; // Null-terminate the postfix expression
-}
 
-int main()
+    bool isEmpty(){
+        if(front == NULL ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+};
+
+int main ()
 {
+    queue q;
+    q.push(10);
+    q.push(20);
+    q.push(30);
+    q.push(40);
 
-    char expression[100], postfix[100];
-    cout << "Enter an expression in infix form: ";
-    cin.getline(expression, 100);
-    infixToPostfix(expression, postfix);
-    cout << "The postfix expression is: " << postfix << endl;
+    cout<<q.peek() << endl;
+    q.pop();
+    cout<<q.peek() << endl;
+    q.pop();
+    cout<<q.peek() << endl;
+    q.pop();
+    cout<<q.peek() << endl;
+    q.pop();
+
+    // Trying to peek and pop from an empty queue
+    cout<<q.peek() << endl;
+    q.pop();
+
     return 0;
 }
